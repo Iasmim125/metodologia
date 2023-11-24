@@ -13,7 +13,33 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      home: QuizPage(),
+      home: StartPage(),
+    );
+  }
+}
+
+class StartPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Recomenda Metodologias'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => QuizPage()),
+            );
+          },
+          style: ElevatedButton.styleFrom(
+            primary: Colors.purple,
+            onPrimary: Colors.white,
+          ),
+          child: Text('Iniciar Teste'),
+        ),
+      ),
     );
   }
 }
@@ -80,6 +106,7 @@ class _QuizPageState extends State<QuizPage> {
       questionIndex = 0;
       answers = [];
     });
+    Navigator.pop(context); // Pop the results page
   }
 
   @override
@@ -287,4 +314,3 @@ class ResultsPage extends StatelessWidget {
     );
   }
 }
-
